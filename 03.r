@@ -96,4 +96,4 @@ data
 # data$oldType <- originalType
 # data$newType2 <- treecut2
 
-data
+data # print data
