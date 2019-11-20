@@ -7,8 +7,7 @@ life$mw50 <- abs(life$w50 - life$m50)
 life$mw75 <- abs(life$w75 - life$m75)
 
 life <- life[-1:-8]
-
-life
+names(life)
 
 # K-Means
 # Normalise data
@@ -27,26 +26,37 @@ plot(1:10, wss, type = 'l',
   ylab = 'Within groups sum of squares',
   lwd = 2)
 
+# life.k <- kmeans(life, 2)
+
+# lapply(1:2, function(nc) {
+#   apply(life[life.k$cluster == nc,], 2, mean)
+# })
+
 dev.off()
+
+life
 
 # We have selected 2
 
 par(mfrow = c(1, 3))
 hclust.single <- hclust(dist(life), method = 'single')
 plclust(hclust.single, labels = row.names(life), ylab='Distance')
-title('(a) Single Linkage')
+abline(h = 6, col = 'red')
+title('Single Linkage')
 hclust.complete <- hclust(dist(life), method = 'complete')
 plclust(hclust.complete, labels = row.names(life), ylab='Distance')
-title('(a) Complete Linkage')
+abline(h = 15, col = 'red')
+title('Complete Linkage')
 hclust.average <- hclust(dist(life), method = 'average')
 plclust(hclust.average, labels = row.names(life), ylab='Distance')
-title('(a) Average Linkage')
+abline(h = 12, col = 'red')
+title('Average Linkage')
 
 dev.off()
 
-# We have selected complete linkage
+# We have selected single linkage
 
-treecut <- cutree(hclust.complete, h = 15)
+treecut <- cutree(hclust.single, h = 6)
 life$group <- treecut # add group number to data
 life
 
