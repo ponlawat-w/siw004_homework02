@@ -84,7 +84,7 @@ treecut2 <- cutree(hclust.complete, h = 30)
 treecut2
 data$oldType <- originalType
 data$newType2 <- treecut2
-data
+data #yeiyei
 
 # treecut3 <- cutree(hclust.average, h = 22)
 # treecut3
